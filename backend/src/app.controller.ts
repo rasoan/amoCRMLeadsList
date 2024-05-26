@@ -9,4 +9,12 @@ export class AppController {
   getHello(): string {
     return this.appService.getHello();
   }
+
+  @Get('/leads')
+  getHello1(): { name: string; surname: string }[] {
+    return [
+      { name: 'Araik', surname: 'Rasayan' },
+      { name: 'Araik', surname: 'Rasayan' },
+    ];
+  }
 }
