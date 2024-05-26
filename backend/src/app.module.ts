@@ -1,10 +1,13 @@
+'use strict';
+
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
+import { LeadsController } from './Leads/leads.controller';
+import { LeadsService } from './Leads/leads.service';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [AppModule],
+  controllers: [LeadsController],
+  providers: [LeadsService],
 })
 export class AppModule {}

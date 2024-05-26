@@ -7,5 +7,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "cd backend && nest start"
+  },
+  "dependencies": {
+    "@nestjs/axios": "^3.0.2",
+    "axios": "^1.7.2"
   }
 }
