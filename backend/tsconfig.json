@@ -16,6 +16,10 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false
+    "noFallthroughCasesInSwitch": false,
+    // Не удалять объявления const enum из итогового файла.
+    "preserveConstEnums": true,
+    // Определяет тип завершения строк в итоговом файле.
+    "newLine": "lf"
   }
 }
