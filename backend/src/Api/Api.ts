@@ -208,6 +208,7 @@ async function _getLeads(_tokensApi: _TokensApi, options: {
     },
   });
 
+  // 204 статус скажет о том, что по запросу ничего не найдено
   if (response.status === 204) {
     return [];
   }
