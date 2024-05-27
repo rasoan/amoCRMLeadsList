@@ -1,10 +1,33 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <Collapse />
+  <h3>
+    Пример тестового задания
+  </h3>
+  <div>
+    <QueryField />
+  </div>
+  <div>
+    {{ store.leads }}
+  </div>
 </template>
+
+<script>
+  'use strict'
+
+  import QueryField from "../src/components/QueryField/QueryField.vue";
+  import {store} from "./store/store";
+
+  export default {
+    computed: {
+      store() {
+        return store
+      }
+    },
+    components: {
+      QueryField,
+    }
+  };
+</script>
 
 <style lang="scss">
 #app {
@@ -13,18 +36,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
