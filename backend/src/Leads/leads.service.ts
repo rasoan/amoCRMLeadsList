@@ -8,7 +8,7 @@ import { Api } from '../Api/Api';
 export class LeadsService {
   private _api = new Api();
 
-  getLeads() {
-    return this._api.getLeads();
+  getLeads(query?: string) {
+    return this._api.getLeads(query);
   }
 }

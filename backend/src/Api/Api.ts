@@ -10,6 +10,7 @@ import {
 } from "./types/Api";
 import {assertIsDefined, assertIsValidTokens} from "../typeguards/typeguards";
 
+// todo: все enums должны быть в .d.ts файле, надо разобраться, как заставить TS компилировать эти const enums
 const enum ERROR_AMOCRM_CODES {
   /** Когда токены протухают - получаем такой код */
   Unauthorized = 401,
@@ -54,19 +55,19 @@ class _TokensApi {
 export class Api {
   private _tokensApi = new _TokensApi();
 
-  public async getLeads() {
+  public async getLeads(query?: string) {
     const {
       refresh,
     } = this._tokensApi.getTokensFromFile();
 
     try {
-      return await _getLeads(this._tokensApi);
+      return await _getLeads(this._tokensApi, { query });
     }
     catch (error: unknown) {
       if ((error as AxiosError)?.response?.status === ERROR_AMOCRM_CODES.Unauthorized) {
         await this._updateTokens(refresh);
 
-        return _getLeads(this._tokensApi);
+        return _getLeads(this._tokensApi, { query });
       }
 
       throw error;
@@ -185,14 +186,20 @@ async function _getItem<T>(options: {
   }
 }
 
-async function _getLeads(_tokensApi: _TokensApi): Promise<ApiResponses.GetLeadsDataReturn> {
+async function _getLeads(_tokensApi: _TokensApi, options: {
+  query?: string,
+}): Promise<ApiResponses.GetLeadsDataReturn> {
+  const {
+    query,
+  } = options;
   const {
     access,
   } = _tokensApi.getTokensFromFile();
 
+  const _queryResult = query ? `?query=${query}` : "";
   const response = await axios<AmoCRMResponses.GetLeadsData>({
     method: 'GET',
-    url: _createForGetRequestPath("api/v4/leads"),
+    url: _createForGetRequestPath(`api/v4/leads${_queryResult}`),
     params: {
       with: "contacts",
     },
@@ -200,6 +207,10 @@ async function _getLeads(_tokensApi: _TokensApi): Promise<ApiResponses.GetLeadsD
       ..._createAuthHeader(access),
     },
   });
+
+  if (response.status === 204) {
+    return [];
+  }
 
   const leadsList = response.data._embedded.leads.map(({
      created_at,
@@ -257,6 +268,9 @@ async function _getLeads(_tokensApi: _TokensApi): Promise<ApiResponses.GetLeadsD
     assertIsDefined(currentLead_status);
     assertIsDefined(currentLead_user);
 
+    // todo: надо разобраться, может и контакты можно так же оптимизировать и брать локально контакт если его уже доставали для другой сделки
+    //  что бы не доставать каждый раз заново один и тот же контакт, но возможно это не возможно и безсмысленно.
+    //  Возможно у каждой сделки свои уникальные контакты, которые не возможно переиспользовать для других сделок, тогда и оптимизировать не получиться.
     const contactsListResult = await _getContactsListByIdentifiersList({
       accessToken: access,
       contactsIdentifiersList: contacts,

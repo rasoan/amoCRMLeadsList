@@ -1,6 +1,6 @@
 'use strict';
 
-import { Controller, Get } from '@nestjs/common';
+import {Controller, Get, Query} from '@nestjs/common';
 
 import { LeadsService } from './leads.service';
 
@@ -9,7 +9,7 @@ export class LeadsController {
   constructor(private readonly leadsService: LeadsService) {}
 
   @Get('list')
-  getLeads() {
-    return this.leadsService.getLeads();
+  getLeads(@Query('query') query?: string) {
+    return this.leadsService.getLeads(query);
   }
 }
