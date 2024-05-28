@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start-backend:dev": "cd backend && pnpm run start:dev",
-    "start-frontand:dev": "cd frontand && pnpm run start:dev"
+    "start:b": "cd backend && pnpm run start:dev",
+    "start:f": "cd frontand && pnpm run start:dev"
   }
 }

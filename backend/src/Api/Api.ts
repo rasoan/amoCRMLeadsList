@@ -359,7 +359,7 @@ async function _getContactsListByIdentifiersList(options: {
         }
       }
     }
-
-    return contactsList;
   }
+
+  return contactsList;
 }
