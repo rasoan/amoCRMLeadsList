@@ -6,20 +6,16 @@ import axios from "axios";
 import {ChangeEvent} from "ant-design-vue/es/_util/EventInterface";
 
 export const store = reactive({
-  query: "",
   leads: {},
   isLoadLeads: false,
-  onChangeInputQuery(event: ChangeEvent) {
-    this.query = event.target.value || this.query;
-
-    const debounceGetLeads = debounce(500, () => this.getLeads());
-
-    void debounceGetLeads();
-  },
-  async getLeads() {
+  async getLeads(queryString: string) {
     this.isLoadLeads = true;
 
-    this.leads = await axios.get(`http://localhost:3000/leads/list?query=${this.query}`);
+    const debounceGetLeads = debounce(500, async () => {
+      this.leads = await axios.get(`http://localhost:3000/leads/list?query=${queryString}`);
+    });
+
+    void debounceGetLeads();
 
     this.isLoadLeads = false;
   }
