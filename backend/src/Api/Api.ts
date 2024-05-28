@@ -4,25 +4,15 @@ import axios, {AxiosError} from 'axios';
 
 import {getTokensFromFile as _getTokensFromFile, setTokensToFile as _setTokensToFile, Tokens} from '../utils/utils';
 import {client_id, client_secret} from "../../utils/constants";
-import {
-  AmoCRMResponses,
-  ApiResponses,
-} from "./types/Api";
+import {AmoCRMResponses} from "./types/Api";
 import {assertIsDefined, assertIsValidTokens} from "../typeguards/typeguards";
+import { ApiResponses } from "../../../frontand/src/api/api";
+import {ContactCustomFieldsValuesTypes} from "../../../frontand/src/api/constants";
 
 // todo: все enums должны быть в .d.ts файле, надо разобраться, как заставить TS компилировать эти const enums
 const enum ERROR_AMOCRM_CODES {
   /** Когда токены протухают - получаем такой код */
   Unauthorized = 401,
-}
-
-export enum ContactCustomFieldsValuesTypes {
-  Phone = "PHONE",
-  Email = 'EMAIL',
-}
-
-export enum ContactCustomFieldsValuesEnumType {
-  Work = "WORK",
 }
 
 class _TokensApi {
@@ -369,7 +359,7 @@ async function _getContactsListByIdentifiersList(options: {
         }
       }
     }
-
-    return contactsList;
   }
+
+  return contactsList;
 }

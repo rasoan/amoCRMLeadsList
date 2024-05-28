@@ -6,10 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "start": "cd backend && pnpm run start:dev"
-  },
-  "dependencies": {
-    "@nestjs/axios": "^3.0.2",
-    "axios": "^1.7.2"
+    "start:b": "cd backend && pnpm run start:dev",
+    "start:f": "cd frontand && pnpm run start:dev"
   }
 }
