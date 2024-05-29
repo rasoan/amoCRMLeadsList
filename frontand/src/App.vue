@@ -74,34 +74,40 @@
   } from 'ant-design-vue';
   import {onMounted} from "@vue/runtime-core";
   import { ref } from 'vue'
+  import {ColumnType} from "ant-design-vue/es/table";
 
   const columns = [
     {
       title: "Название",
       dataIndex: 'name',
       key: 'name',
+      align: 'left',
     },
     {
       title: "Бюджет",
       dataIndex: 'price',
       key: 'price',
+      align: 'center',
     },
     {
       title: "Статус",
       dataIndex: 'status',
       key: 'status',
+      align: 'center',
     },
     {
       title: "Ответственный",
       dataIndex: 'responsible',
       key: 'responsible',
+      align: 'center',
     },
     {
       title: "Дата создания",
       dataIndex: 'createdAt',
       key: 'createdAt',
+      align: 'center',
     },
-  ];
+  ] as ColumnType[];
 
   const dataLeads = ref([] as object[]);
 
