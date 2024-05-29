@@ -1,0 +1,12 @@
+{
+  "name": "test",
+  "version": "0.0.1",
+  "description": "",
+  "author": "",
+  "private": true,
+  "license": "UNLICENSED",
+  "scripts": {
+    "start:b": "cd backend && pnpm run start:dev",
+    "start:f": "cd frontand && pnpm run start:dev"
+  }
+}
