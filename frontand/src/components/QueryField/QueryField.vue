@@ -28,6 +28,8 @@
    //
    import { store } from "@/store/store";
    import { ref } from 'vue'
+   //
+   import { debounce } from 'vue-debounce'
 
    let fieldValue = ref("");
 
@@ -43,6 +45,9 @@
    let status = statusField_ok.status as "" | "error";
    let placeholder = statusField_ok.placeholder;
 
+   const getLeads_debounce = debounce((value: string) => {
+     void store.getLeads(value);
+   }, 500);
    const validateLengthFieldAndGetLeads = () => {
      if (fieldValue.value.length > 0
        && fieldValue.value.length <= 3
@@ -54,11 +59,11 @@
        status = statusField_ok.status as "" | "error";
        placeholder = statusField_ok.placeholder;
 
-       void store.getLeads(fieldValue.value);
+       getLeads_debounce(fieldValue.value);
 
        return;
      }
-   }
+   };
    const onClickSearchInput = () => {
      validateLengthFieldAndGetLeads();
    }

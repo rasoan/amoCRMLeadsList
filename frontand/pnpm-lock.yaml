@@ -34,6 +34,7 @@ specifiers:
   typescript: ~4.5.5
   vue: ^3.2.13
   vue-class-component: ^8.0.0-0
+  vue-debounce: ^5.0.0
   vue-router: ^4.0.3
   vuex: ^4.0.0
 
@@ -46,6 +47,7 @@ dependencies:
   core-js: 3.37.1
   vue: 3.4.27_typescript@4.5.5
   vue-class-component: 8.0.0-rc.1_vue@3.4.27
+  vue-debounce: 5.0.0_vue@3.4.27
   vue-router: 4.3.2_vue@3.4.27
   vuex: 4.1.0_vue@3.4.27
 
@@ -9726,6 +9728,14 @@ packages:
   /vue-component-type-helpers/2.0.19:
     resolution: {integrity: sha512-cN3f1aTxxKo4lzNeQAkVopswuImUrb5Iurll9Gaw5cqpnbTAxtEMM1mgi6ou4X79OCyqYv1U1mzBHJkzmiK82w==}
     dev: true
+
+  /vue-debounce/5.0.0_vue@3.4.27:
+    resolution: {integrity: sha512-heIPTbmFC6Hghhnwbfjw0nYRBYH+YFp/d9xGQ/rDRPUfU6NBIndbJz+i0pHVii4BXXRi1CaljT6H3fDSbbPMvg==}
+    peerDependencies:
+      vue: '>= 3.0.0'
+    dependencies:
+      vue: 3.4.27_typescript@4.5.5
+    dev: false
 
   /vue-eslint-parser/8.3.0_eslint@7.32.0:
     resolution: {integrity: sha512-dzHGG3+sYwSf6zFBa0Gi9ZDshD7+ad14DGOdTLjruRVgZXe2J+DcZ9iUhyR48z5g1PqRa20yt3Njna/veLJL/g==}
